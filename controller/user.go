@@ -16,18 +16,21 @@ func LoginUser(w http.ResponseWriter, r *http.Request){
 		if r.PostFormValue("username") == "claudio" && r.PostFormValue("Password") == "admin" {
 			//Insert model method to acess database
 			fmt.Println("Login sucessFull")
+			http.Redirect(w, r, "/chatService", http.StatusSeeOther)
 		}
 	}
 }
 
 //Incomplete implement database first
 func RegisterUser(w http.ResponseWriter, r *http.Request){
-	bool registered = false;
+	var(
+		registered bool = false;
+	)
 	if !registered {
 		r.ParseForm()
-		string name = r.PostFormValue("name")
-		string password = r.PostFormValue("password")
-		string email = r.PostFormValue("email")
+	//	string name = r.PostFormValue("name")
+	//	string password = r.PostFormValue("password")
+	//	string email = r.PostFormValue("email")
 		//Send to database
 	}else {
 		panic("Error user already exists")

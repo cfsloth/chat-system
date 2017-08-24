@@ -27,7 +27,8 @@ func hello(w http.ResponseWriter, r *http.Request){
 func main(){
 	//When in root file redirect to login or chat page
 	//Serve css and js and sass
-	http.Handle("./template", http.FileServer(http.Dir("./template")))
-	http.HandleFunc("/login",user.LoginUser);
+	http.Handle("./template", http.StripPrefix("./template", http.FileServer(http.Dir("./template"))))
+	http.HandleFunc("/",user.LoginUser)
+	//http.HandleFunc("/chatService",)
 	http.ListenAndServe(":8080",nil)
 }
