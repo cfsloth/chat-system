@@ -26,14 +26,14 @@
 <div class="form">
 	<div class="thumbnail"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/hat.svg"/>
 	</div>
-  <form class="register-form">
-    <input type="text" placeholder="Name"/>
-    <input type="password" placeholder="Password"/>
-    <input type="text" placeholder="Email Address"/>
+  <form method="POST" class="register-form">
+    <input type="text" name= "name" placeholder="Name"/>
+    <input type="password" name="password" placeholder="Password"/>
+    <input type="text" name="" placeholder="Email Address"/>
     <button type="submit">Create</button>
     <p class="message">Already registered? <a href="#">Sign In</a></p>
   </form>
-  <form method="post" class="login-form">
+  <form method="POST" class="login-form">
     <input type="text" name="username" placeholder="Username"/>
     <input type="password" name="password" placeholder="Password"/>
     <button type="submit">Login</button>
