@@ -7,8 +7,16 @@ import (
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	t,_ := template.ParseFiles("./template/index.html");
-	t.Execute(w,"");
+	if r.Method == "GET" {
+		t,_ := template.ParseFiles("./template/index.gtpl")
+		t.Execute(w,nil)
+	}else{
+		r.ParseForm()
+//		Acess to Database
+		if r.PostFormValue("username") == "claudio" && r.PostFormValue("password") == "admin" {
+			fmt.Println("claudio");
+		}
+	}
 }
 
 func hello(w http.ResponseWriter, r *http.Request){
@@ -16,8 +24,9 @@ func hello(w http.ResponseWriter, r *http.Request){
 }
 
 func main(){
-	http.HandleFunc("/",handler)
-	http.HandleFunc("/chat",hello);
+	//Serve css and js and sass
+	http.FileServer(http.Dir("./template"))
+	http.HandleFunc("/",handler);
 	http.ListenAndServe(":8080",nil)
 }
 
