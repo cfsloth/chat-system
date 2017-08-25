@@ -3,20 +3,20 @@ package user
 import (
 	"fmt"
 	"net/http"
-	"html/template"
 )
 
 //Probable turn this into a login function
 func LoginUser(w http.ResponseWriter, r *http.Request){
 	if r.Method == "GET" {
-		t,_ := template.ParseFiles("template/index.gtpl")
-		t.Execute(w,nil)
+		http.ServeFile(w,r,"template/index.gtpl")
+		fmt.Println("GET /")
 	}else{
+		fmt.Println("POST /")
 		r.ParseForm()
-		if r.PostFormValue("username") == "claudio" && r.PostFormValue("Password") == "admin" {
+		if r.PostFormValue("username") == "claudio" && r.PostFormValue("password") == "admin" {
 			//Insert model method to acess database
 			fmt.Println("Login sucessFull")
-			http.Redirect(w, r, "/chatService", http.StatusSeeOther)
+			http.Redirect(w, r, "/chatMessage", http.StatusSeeOther)
 		}
 	}
 }

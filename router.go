@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"html/template"
 	"Chat-System/chat-system/controller"
+	"github.com/gorilla/mux"
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
@@ -21,14 +22,23 @@ func handler(w http.ResponseWriter, r *http.Request) {
 }
 
 func hello(w http.ResponseWriter, r *http.Request){
-	fmt.Fprintf(w,"Hello Go");
+	http.ServeFile(w,r,"./template/index.gtpl");
+}
+
+func chatService(w http.ResponseWriter, r *http.Request){
+	http.ServeFile(w,r,"./template/chat.gtpl")
 }
 
 func main(){
-	//When in root file redirect to login or chat page
-	//Serve css and js and sass
-	http.Handle("./template", http.StripPrefix("./template", http.FileServer(http.Dir("./template"))))
-	http.HandleFunc("/",user.LoginUser)
-	//http.HandleFunc("/chatService",)
+	r := mux.NewRouter()
+	cssHandler := http.FileServer(http.Dir("./template/css/"))
+	jsHandler := http.FileServer(http.Dir("./template/js/"))
+	sassHandler := http.FileServer(http.Dir("./template/sass/"))
+	http.Handle("/css/",http.StripPrefix("/css/", cssHandler))
+	http.Handle("/js/",http.StripPrefix("/js/",jsHandler))
+	http.Handle("/sass/",http.StripPrefix("/sass/",sassHandler))
+	r.HandleFunc("/",user.LoginUser)
+	r.HandleFunc("/chatMessage",chatService)
+	http.Handle("/",r)
 	http.ListenAndServe(":8080",nil)
 }

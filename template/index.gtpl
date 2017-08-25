@@ -33,7 +33,7 @@
     <button type="submit">Create</button>
     <p class="message">Already registered? <a href="#">Sign In</a></p>
   </form>
-  <form method="POST" class="login-form">
+  <form action="/" method="POST" class="login-form">
     <input type="text" name="username" placeholder="Username"/>
     <input type="password" name="password" placeholder="Password"/>
     <button type="submit">Login</button>
