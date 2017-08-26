@@ -1,20 +1,15 @@
 <!DOCTYPE html>
 <html >
 <head>
-  <meta charset="UTF-8">
-  <title>A Pen by  Virgil Pana</title>
-  
-  
-  
-      <link rel="stylesheet" href="css/style-chat.css">
-
-  
+  <meta charset="UTF-8">:
+  <title>Chat Messenger</title>
+      <link rel="stylesheet" href="css/style-chat.css"> 
 </head>
 
 <body>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
 
-<a id="view-code" href="https://codepen.io/virgilpana/pen/ZYZXgP" target="_blank">VIEW CODE</a>
+  <!--<a id="view-code" href="https://codepen.io/virgilpana/pen/ZYZXgP" target="_blank">VIEW CODE</a> -->
 
 <div id="chatbox">
 	<div id="friendslist">
@@ -80,7 +75,7 @@
     
     <div id="chatview" class="p1">    	
         <div id="profile">
-
+	
             <div id="close">
                 <div class="cy"></div>
                 <div class="cx"></div>

@@ -1,4 +1,4 @@
-package userModel
+package model
 
 import (
 	"gopkg.in/mgo.v2"
@@ -13,13 +13,14 @@ const(
 )
 
 //Attributes must be upper case or it will not save on the database
-type Users struct {
+	
+/*type Users struct {
 	EMAIL string
 	PASSWORD string
 	NAME string
-}
+}*/
 
-func InitializeDB(){
+func InitializeDB() *mgo.Session{
 
 	mongoDBDialInfo := &mgo.DialInfo{
 		Addrs: []string{MongoDBHosts},
@@ -33,10 +34,11 @@ func InitializeDB(){
 		panic(err)
 	}
 
-	c := session.DB("chat-service").C("users")
+	return session
+}
+/*	c := session.DB("chat-service").C("users")
 	err = c.Insert(&Users{"claudio@gmail.com","123456","claudio"})
 	if err != nil {
 		panic(err)
 	}
-}
-
+}*/
