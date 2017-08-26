@@ -23,30 +23,42 @@ func LoadPageAndMethods(w http.ResponseWriter, r *http.Request){
 	}
 }
 
-//Does the login - incomplete
+//Does the login - need to do session variables
 func LoginUser(w http.ResponseWriter, r *http.Request){
-		if r.PostFormValue("email") == "claudio" && r.PostFormValue("password") == "admin" {
+	session := model.InitializeDB()
+	user := model.FindUserByEmail(session,r.PostFormValue("email"))
+	if r.PostFormValue("email") == user.EMAIL && r.PostFormValue("password") == user.PASSWORD {
 			//Insert model method to acess database
 			fmt.Println("Login sucessFull")
 			http.Redirect(w, r, "/chatMessage", http.StatusSeeOther)
 		}else{
-			panic("Wrong login")
+			//Handling error
+			var html = []byte(`
+			<script> alert('Error : Wrong login') 
+			window.location.href = "/"
+			</script>`)
+			w.Write(html)
 		}
 }
 
-//Registe user - incomplete
+//Registe user
 func RegisterUser(w http.ResponseWriter, r *http.Request){
-	var(
-		registered bool = false;
-	)
-	if !registered {
+	session := model.InitializeDB()
+	user := model.FindUserByEmail(session,r.PostFormValue("email"))
+	if user.EMAIL == "" {
 		name := r.PostFormValue("name")
 		password := r.PostFormValue("password")
 		email := r.PostFormValue("email")
-		session := model.InitializeDB()
+		//Send to the database
 		model.InsertUser(session,email,password,name)
-		//Send to database
 	}else {
-		panic("Error user already exists")
+		//Handling error
+		var html = []byte(`
+		<script>
+		alert("Error: Email already exists")
+		window.location.href = "/"
+		</script>`)
+		w.Write(html)
 	}
 }
+

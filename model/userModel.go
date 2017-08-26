@@ -1,7 +1,9 @@
 package model
 
 import(
+//	"fmt"
 	"gopkg.in/mgo.v2"
+	"gopkg.in/mgo.v2/bson"
 )
 
 type User struct {
@@ -17,3 +19,11 @@ func InsertUser(session *mgo.Session, email string, password string, name string
 		panic(err)
 	}
 }
+
+func FindUserByEmail(session *mgo.Session, searchTerm string) User{
+	c := session.DB("chat-service").C("users")
+	user := User{}
+	c.Find(bson.M{"email" : searchTerm}).One(&user)
+	return user
+}
+
