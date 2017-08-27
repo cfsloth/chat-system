@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"time"
 	"fmt"
 	"net/http"
 	"Chat-System/chat-system/model"
@@ -9,8 +10,14 @@ import (
 //Controls the page
 func LoadPageAndMethods(w http.ResponseWriter, r *http.Request){
 	if r.Method == "GET" {
-		http.ServeFile(w,r,"template/index.gtpl")
-		fmt.Println("GET /")
+		var cookie,err = r.Cookie("loginC")
+		//Here use some encriptation/desincriptation function for cookies
+		if(err == nil && cookie.Value == "true"){
+			http.Redirect(w, r, "/chatMessage", http.StatusSeeOther)
+		}else{
+			http.ServeFile(w,r,"template/index.gtpl")
+			fmt.Println("GET /")
+		}
 	}else{
 		r.ParseForm()
 		if r.PostFormValue("name") != "" {
@@ -23,13 +30,16 @@ func LoadPageAndMethods(w http.ResponseWriter, r *http.Request){
 	}
 }
 
-//Does the login - need to do session variables
+//Does the login - cookie is unprotected
 func LoginUser(w http.ResponseWriter, r *http.Request){
 	session := model.InitializeDB()
 	user := model.FindUserByEmail(session,r.PostFormValue("email"))
 	if r.PostFormValue("email") == user.EMAIL && r.PostFormValue("password") == user.PASSWORD {
 			//Insert model method to acess database
 			fmt.Println("Login sucessFull")
+			expiration := time.Now().Add(365 * 24 * time.Hour)
+			cookie := http.Cookie{Name: "loginC",Value:"true",Expires: expiration}
+			http.SetCookie(w,&cookie)
 			http.Redirect(w, r, "/chatMessage", http.StatusSeeOther)
 		}else{
 			//Handling error
