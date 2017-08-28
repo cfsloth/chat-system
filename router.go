@@ -11,7 +11,7 @@ func hello(w http.ResponseWriter, r *http.Request){
 }
 
 func chatService(w http.ResponseWriter, r *http.Request){
-	http.ServeFile(w,r,"./template/chat.gtpl")
+	http.ServeFile(w,r,"./template/chat-box.html")
 }
 
 func main(){

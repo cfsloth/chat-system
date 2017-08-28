@@ -14,7 +14,7 @@
 <div id="chatbox">
 	<div id="friendslist">
     	<div id="topmenu">
-        	<span class="friends"></span>
+            <span class="friends"></span>
             <span class="chats"></span>
             <span class="history"></span>
         </div>
@@ -23,7 +23,7 @@
         	<div class="friend">
             	<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/1_copy.jpg" />
                 <p>
-                	<strong>Miro Badev</strong>
+                	<strong>miro badev</strong>
 	                <span>mirobadev@gmail.com</span>
                 </p>
                 <div class="status available"></div>
@@ -69,7 +69,7 @@
 	            <input type="text" id="searchfield" value="Search contacts..." />
             </div>
             
-        </div>                
+        </div>		
         
     </div>	
     
@@ -141,7 +141,11 @@
     
     </div>        
 </div>	
-    
+	
+
+	
+		
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   
     <script src="js/index-chat.js"></script>

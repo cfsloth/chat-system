@@ -1,5 +1,4 @@
 $(document).ready(function(){
-	
   var preloadbg = document.createElement("img");
   preloadbg.src = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/timeline1.png";
   
