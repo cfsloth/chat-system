@@ -9,18 +9,16 @@
 <body>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
 
-  <!--<a id="view-code" href="https://codepen.io/virgilpana/pen/ZYZXgP" target="_blank">VIEW CODE</a> -->
-
 <div id="chatbox">
 	<div id="friendslist">
     	<div id="topmenu">
             <span class="friends"></span>
             <span class="chats" onclick='seeLastMessages()' ></span>
             <span class="history"></span>
-        </div>      
+        </div>  
         <div id="friends">
-		<div id ="friends1">
-			<div class="friend">
+		<div id ="contacts">
+			<div class="friend" onclick='' >
 				<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/1_copy.jpg" />
 				<p>
 				<strong>miro badev</strong>
@@ -46,26 +44,32 @@
 			</div>
 		</div> 
 		<div id="search">
-			<input type="text" id="searchfield" value="Search contacts..." />
-		</div>
+			<input type="text" id="searchfield" value="Search contacts..." onkeypress="testAlert(event)"/>
+		</div> 
 	</div>		
 	</div>	
-    
-  <!--  <div id="chatview" class="p1">    	
-  -->
   </div>        
-</div>	
-	
+</div>
 
-	
-		
+<div id="chat-box">
 
+</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   
     <script src="js/index-chat.js"></script>
     <script>
 	function seeLastMessages(){
-		document.getElementById("friends1").innerHTML = "";
+		document.getElementById("contacts").innerHTML = "";
+	}
+
+	function includeHtmlChat(){
+		
+	}
+
+	function testAlert(e){
+		if (e.keyCode == 13) {
+			alert("it works")
+		}
 	}
     </script>
 </body>

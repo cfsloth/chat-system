@@ -27,7 +27,7 @@ $(document).ready(function(){
 	});
 		
 	
-	$(".friend").each(function(){		
+/*	$(".friend").each(function(){		
 		$(this).click(function(){
 			var childOffset = $(this).offset();
 			var parentOffset = $(this).parent().parent().offset();
@@ -77,5 +77,5 @@ $(document).ready(function(){
 			});
 			
 		});
-	});			
+	});	*/		
 });
