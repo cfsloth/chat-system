@@ -12,9 +12,9 @@
 <div id="chatbox">
 	<div id="friendslist">
     	<div id="topmenu">
-            <span class="friends"></span>
+            <span class="history" onclick='loadFriendRequests()' ></span>
             <span class="chats" onclick='seeLastMessages()' ></span>
-            <span class="history"></span>
+            <span class="friends" onclick='contactSearch()' ></span>
         </div>  
         <div id="friends">
 		<div id ="contacts">
@@ -43,9 +43,9 @@
 				<div class="status inactive"></div>
 			</div>
 		</div> 
-		<div id="search">
-			<input type="text" id="searchfield" value="Search contacts..." onkeypress="testAlert(event)"/>
-		</div> 
+		<!--<div id="search">
+			<input type="text" id="searchfield" value="Search contacts..." onkeypress="includeHtml(event)"/>
+		</div>--> 
 	</div>		
 	</div>	
   </div>        
@@ -59,16 +59,36 @@
     <script src="js/index-chat.js"></script>
     <script>
 	function seeLastMessages(){
-		document.getElementById("contacts").innerHTML = "";
+		document.getElementById("friends").innerHTML = '<div id="search"><input type="text" id="searchfield" value="Search contacts..." onkeypress="searchForPersonMessage(event)"/></div> '
 	}
 
-	function includeHtmlChat(){
-		
+	//Ajax call to the search the database for messages of a person. Move this to other directory
+	function searchForPersonMessage(e){
+		//Enter key
+		if(e.keyCode == 13){
+			alert('Go to database and update')
+		}		
 	}
 
 	function testAlert(e){
 		if (e.keyCode == 13) {
 			alert("it works")
+		}
+	}
+
+	function loadFriendRequest(){
+		//Ajax to load friend requests
+			
+	}
+
+	function contactSearch(){
+		document.getElementById("friends").innerHTML = '<div id="search"><input type="text" id="searchfield" value="Search for new friends..." onkeypress="searchForNewFriends(event)"/></div> '
+
+	}
+
+	function searchForNewFriends(event){
+		if(e.keyCode == 13){
+			alert("Searching for new friends")
 		}
 	}
     </script>

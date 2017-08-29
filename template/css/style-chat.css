@@ -15,6 +15,7 @@ body {
   z-index:200;
 }
 #view-code:hover{opacity:1;}
+
 #chatbox{
 	width:290px;
 	background:#fff;
@@ -45,11 +46,12 @@ body {
     height: 70px;
     background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/top-menu.png") -3px -118px no-repeat;
 }
-#topmenu span.friends{margin-bottom:-1px;}
-#topmenu span.chats{background-position:-95px 25px; cursor:pointer;}
-#topmenu span.chats:hover{background-position:-95px -46px; cursor:pointer;}
-#topmenu span.history{background-position:-190px 24px; cursor:pointer;}
-#topmenu span.history:hover{background-position:-190px -47px; cursor:pointer;}
+#topmenu span.history{background-position: -176px -118px; margin-bottom:-1px; cursor:pointer}
+#topmenu span.history:hover{opacity:0.40;}
+#topmenu span.chats{background-position:-90px -118px; cursor:pointer;}
+#topmenu span.chats:hover{opacity:0.40; background-position:-90px -118px; cursor:pointer;}
+#topmenu span.friends{background-position:-1px -118px; cursor:pointer;}
+#topmenu span.friends:hover{opacity:0.40; background-position:-1px -118px; cursor:pointer;}
 .friend{
 	height:70px;
 	border-bottom:1px solid #e7ebee;		
@@ -81,7 +83,7 @@ body {
 .friend p strong{
   font-weight:600;
   font-size:15px;
-	color:#597a96;  
+  color:#597a96;  
 
 }
 .friend p span{
