@@ -58,6 +58,7 @@
   
     <script src="js/index-chat.js"></script>
     <script>
+
 	function seeLastMessages(){
 		document.getElementById("friends").innerHTML = '<div id="search"><input type="text" id="searchfield" value="Search contacts..." onkeypress="searchForPersonMessage(event)"/></div> '
 	}
@@ -78,12 +79,20 @@
 
 	function loadFriendRequest(){
 		//Ajax to load friend requests
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function () {
+			if(this.readyState == 4 && this.status == 200){
+				var responde = this.responseText;
+				console.log(response);
+			}
+		};
+		xhttp.open("POST","/getFriendsRequest&email=claudiofilipesilvagoncalves@gmail.com",true);
+		xhttp.send();
 			
 	}
 
 	function contactSearch(){
 		document.getElementById("friends").innerHTML = '<div id="search"><input type="text" id="searchfield" value="Search for new friends..." onkeypress="searchForNewFriends(event)"/></div> '
-
 	}
 
 	function searchForNewFriends(event){
@@ -91,6 +100,7 @@
 			alert("Searching for new friends")
 		}
 	}
+
     </script>
 </body>
 </html>
