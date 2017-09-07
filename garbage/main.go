@@ -1,10 +1,10 @@
 package main
 
-import(
-	"Chat-System/chat-system/controller"
+import (
+	"Chat-System/chat-system/model"
 )
 
-func main(){
-	controller.SocketServer()
-	//controller.ClientSocket()
+func main() {
+	session := model.InitializeDB()
+	model.InsertFriendRequest(session, "filip", "claudio", "claudio@gmail.com")
 }

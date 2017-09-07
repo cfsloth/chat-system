@@ -38,8 +38,10 @@ func LoginUser(w http.ResponseWriter, r *http.Request) {
 		expiration := time.Now().Add(24 * time.Hour)
 		cookie := http.Cookie{Name: "loginC", Value: "true", Expires: expiration}
 		emailCookie := http.Cookie{Name: "email", Value: user.EMAIL, Expires: expiration}
+		nameCookie := http.Cookie{Name: "name", Value: user.NAME, Expires: expiration}
 		http.SetCookie(w, &cookie)
 		http.SetCookie(w, &emailCookie)
+		http.SetCookie(w, &nameCookie)
 		http.Redirect(w, r, "/chatMessage", http.StatusSeeOther)
 	} else {
 		//Handling error
