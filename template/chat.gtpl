@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html >
 <head>
-  <meta charset="UTF-8">:
+  <meta charset="UTF-8">
   <title>Chat Messenger</title>
       <link rel="stylesheet" href="css/style-chat.css">
 </head>
@@ -76,6 +76,7 @@
       }
     }
 
+
 function loadFriendRequest(){
   //Ajax to load friend requests
   var valueOfemail = "";
@@ -93,23 +94,38 @@ function loadFriendRequest(){
   http.open("POST", url, true);
   //Send the proper header information along with the request
   http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  http.onreadystatechange = function() {//Call a function when the state changes.
+  http.onreadystatechange = function() {
     if(http.readyState == 4 && http.status == 200) {
-      alert(http.responseText);
+      var jsonReceived = JSON.parse(http.responseText);
+      var aux;
+      var html = "";
+      for(i=1;i<jsonReceived.length;i++){
+        aux = '<div class="friend">'
+        + '<img src="images/user.jpg" />'
+        + '<p>'
+        + '<strong>'+ jsonReceived[i]["FROMNAME"] +'</strong>'
+        + '<br>'
+        + '<span>'+ jsonReceived[i]["FROMEMAIL"] +'</span>'
+        //+ '</p>'
+        + '<div class="status away"></div>'
+        + '</div>';
+        html = html + aux;
+      }
+      document.getElementById("contacts").innerHTML = html
     }
   }
   http.send(params);
 }
 
-    function contactSearch(){
-      document.getElementById("friends").innerHTML = '<div id="search"><input type="text" id="searchfield" value="Search for new friends..." onkeypress="searchForNewFriends(event)"/></div> '
-    }
+function contactSearch(){
+  document.getElementById("friends").innerHTML = '<div id="search"><input type="text" id="searchfield" value="Search for new friends..." onkeypress="searchForNewFriends(event)"/></div> '
+}
 
-    function searchForNewFriends(event){
-      if(e.keyCode == 13){
-        alert("Searching for new friends")
-      }
-    }
+function searchForNewFriends(event){
+  if(e.keyCode == 13){
+    alert("Searching for new friends")
+  }
+}
     </script>
 </body>
 </html>

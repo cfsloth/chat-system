@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"Chat-System/chat-system/model"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -26,11 +27,10 @@ func LoadPageAndMethodsChat(w http.ResponseWriter, r *http.Request) {
 
 func LoadFriendsRequest(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
-		var data Data
-		data.Name = r.FormValue("email")
-		data.Email = "claudio"
+		session := model.InitializeDB()
+		listOfRequests := model.FindFriendRequests(session, "claudiofilipesilvagoncalves@gmail.com")
 		w.Header().Set("Content-Type", "application/json")
-		js, err := json.Marshal(data)
+		js, err := json.Marshal(listOfRequests)
 		if err != nil {
 			panic(err)
 		}

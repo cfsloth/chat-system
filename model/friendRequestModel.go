@@ -14,14 +14,15 @@ type FriendRequest struct {
 
 func InsertFriendRequest(session *mgo.Session, fromName string, fromEmail string, toEmail string) {
 	c := session.DB("chat-service").C("friendRequests")
-	err := c.Insert(&FriendRequest{fromName, toEmail, toEmail})
+	err := c.Insert(&FriendRequest{fromName, fromEmail, toEmail})
 	if err != nil {
 		panic(err)
 	}
 }
 
-func FindFriendRequests(session *mgo.Session, email string) *mgo.Query {
+func FindFriendRequests(session *mgo.Session, email string) []FriendRequest {
+	var result []FriendRequest
 	c := session.DB("chat-service").C("friendRequests")
-	array := c.Find(bson.M{"to": email})
-	return array
+	c.Find(bson.M{"toemail": email}).All(&result)
+	return result
 }
