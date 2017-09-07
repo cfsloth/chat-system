@@ -35,9 +35,11 @@ func LoginUser(w http.ResponseWriter, r *http.Request) {
 	if r.PostFormValue("email") == user.EMAIL && r.PostFormValue("password") == user.PASSWORD {
 		//Insert model method to acess database
 		fmt.Println("Login sucessFull")
-		expiration := time.Now().Add(365 * 24 * time.Hour)
+		expiration := time.Now().Add(24 * time.Hour)
 		cookie := http.Cookie{Name: "loginC", Value: "true", Expires: expiration}
+		emailCookie := http.Cookie{Name: "email", Value: user.EMAIL, Expires: expiration}
 		http.SetCookie(w, &cookie)
+		http.SetCookie(w, &emailCookie)
 		http.Redirect(w, r, "/chatMessage", http.StatusSeeOther)
 	} else {
 		//Handling error

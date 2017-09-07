@@ -58,49 +58,58 @@
 
     <script src="js/index-chat.js"></script>
     <script>
+    function seeLastMessages(){
+      document.getElementById("friends").innerHTML = '<div id="search"><input type="text" id="searchfield" value="Search contacts..." onkeypress="searchForPersonMessage(event)"/></div> '
+    }
 
-	function seeLastMessages(){
-		document.getElementById("friends").innerHTML = '<div id="search"><input type="text" id="searchfield" value="Search contacts..." onkeypress="searchForPersonMessage(event)"/></div> '
-	}
+    //Ajax call to the search the database for messages of a person. Move this to other directory
+    function searchForPersonMessage(e){
+      //Enter key
+      if(e.keyCode == 13){
+        alert('Go to database and update')
+      }
+    }
 
-	//Ajax call to the search the database for messages of a person. Move this to other directory
-	function searchForPersonMessage(e){
-		//Enter key
-		if(e.keyCode == 13){
-			alert('Go to database and update')
-		}
-	}
+    function testAlert(e){
+      if (e.keyCode == 13) {
+        alert("it works")
+      }
+    }
 
-	function testAlert(e){
-		if (e.keyCode == 13) {
-			alert("it works")
-		}
-	}
+function loadFriendRequest(){
+  //Ajax to load friend requests
+  var valueOfemail = "";
+  var http = new XMLHttpRequest();
+  var url = "findFriendsRequests";
+  var cookies = document.cookie.split(";");
+  for(i=0;i<cookies.length;i++){
+    var nameOfCookie = cookies[i].split("=");
+    if(nameOfCookie[0] === " email"){
+      valueOfemail = nameOfCookie[1];
+      break;
+    }
+  }
+  var params = "email=" + valueOfemail;
+  http.open("POST", url, true);
+  //Send the proper header information along with the request
+  http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  http.onreadystatechange = function() {//Call a function when the state changes.
+    if(http.readyState == 4 && http.status == 200) {
+      alert(http.responseText);
+    }
+  }
+  http.send(params);
+}
 
-	function loadFriendRequest(){
-		//Ajax to load friend requests
-		var xhttp = new XMLHttpRequest();
-		xhttp.onreadystatechange = function () {
-			if(this.readyState == 4 && this.status == 200){
-				var response = xhttp.responseText;
-				console.log(response);
-			}
-		};
-		xhttp.open("GET","/findFriendsRequests",true);
-		xhttp.send();
+    function contactSearch(){
+      document.getElementById("friends").innerHTML = '<div id="search"><input type="text" id="searchfield" value="Search for new friends..." onkeypress="searchForNewFriends(event)"/></div> '
+    }
 
-	}
-
-	function contactSearch(){
-		document.getElementById("friends").innerHTML = '<div id="search"><input type="text" id="searchfield" value="Search for new friends..." onkeypress="searchForNewFriends(event)"/></div> '
-	}
-
-	function searchForNewFriends(event){
-		if(e.keyCode == 13){
-			alert("Searching for new friends")
-		}
-	}
-
+    function searchForNewFriends(event){
+      if(e.keyCode == 13){
+        alert("Searching for new friends")
+      }
+    }
     </script>
 </body>
 </html>

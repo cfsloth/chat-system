@@ -25,6 +25,7 @@ $(document).ready(function(){
 
 		}
 	});
+});
 /*	$(".friend").each(function(){
 		$(this).click(function(){
 			var childOffset = $(this).offset();
@@ -76,46 +77,3 @@ $(document).ready(function(){
 
 		});
 	});	*/
-});
-
-function seeLastMessages(){
-  document.getElementById("friends").innerHTML = '<div id="search"><input type="text" id="searchfield" value="Search contacts..." onkeypress="searchForPersonMessage(event)"/></div> '
-}
-
-//Ajax call to the search the database for messages of a person. Move this to other directory
-function searchForPersonMessage(e){
-  //Enter key
-  if(e.keyCode == 13){
-    alert('Go to database and update')
-  }
-}
-
-function testAlert(e){
-  if (e.keyCode == 13) {
-    alert("it works")
-  }
-}
-
-function loadFriendRequest(){
-  //Ajax to load friend requests
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function () {
-    if(this.readyState == 4 && this.status == 200){
-      var response = xhttp.responseText;
-      console.log(response);
-    }
-  };
-  xhttp.open("GET","/findFriendsRequests",true);
-  xhttp.send();
-
-}
-
-function contactSearch(){
-  document.getElementById("friends").innerHTML = '<div id="search"><input type="text" id="searchfield" value="Search for new friends..." onkeypress="searchForNewFriends(event)"/></div> '
-}
-
-function searchForNewFriends(event){
-  if(e.keyCode == 13){
-    alert("Searching for new friends")
-  }
-}
