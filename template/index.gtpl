@@ -30,6 +30,7 @@
     <input type="text" name= "name" placeholder="Name" required />
     <input type="password" name="password" placeholder="Password" required />
     <input type="text" name="email" placeholder="Email Address" required/>
+    <input type="text" name="cellPhone" placeholder="Phone Number" required/>
     <button type="submit" >Create</button>
     <p class="message">Already registered? <a href="#">Sign In</a></p>
   </form>

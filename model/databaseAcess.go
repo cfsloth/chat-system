@@ -1,11 +1,12 @@
 package model
 
 import (
-	"gopkg.in/mgo.v2"
 	"time"
+
+	"gopkg.in/mgo.v2"
 )
 
-const(
+const (
 	MongoDBHosts = "ds159953.mlab.com:59953"
 	AuthDatabase = "chat-service"
 	AuthUserName = "claudiofilipe21"
@@ -13,18 +14,18 @@ const(
 )
 
 //Attributes must be upper case or it will not save on the database
-	
+
 /*type Users struct {
 	EMAIL string
 	PASSWORD string
 	NAME string
 }*/
 
-func InitializeDB() *mgo.Session{
+func InitializeDB() *mgo.Session {
 
 	mongoDBDialInfo := &mgo.DialInfo{
-		Addrs: []string{MongoDBHosts},
-		Timeout: 600 * time.Second,
+		Addrs:    []string{MongoDBHosts},
+		Timeout:  600 * time.Second,
 		Database: AuthDatabase,
 		Username: AuthUserName,
 		Password: AuthPassword,
@@ -36,6 +37,7 @@ func InitializeDB() *mgo.Session{
 
 	return session
 }
+
 /*	c := session.DB("chat-service").C("users")
 	err = c.Insert(&Users{"claudio@gmail.com","123456","claudio"})
 	if err != nil {

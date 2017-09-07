@@ -61,8 +61,15 @@ func RegisterUser(w http.ResponseWriter, r *http.Request) {
 		name := r.PostFormValue("name")
 		password := r.PostFormValue("password")
 		email := r.PostFormValue("email")
+		cellPhone := r.PostFormValue("cellPhone")
 		//Send to the database
-		model.InsertUser(session, email, password, name)
+		model.InsertUser(session, email, password, name, cellPhone)
+		var html = []byte(`
+		<script>
+		alert("User registed with sucess")
+		window.location.href = "/"
+		</script>`)
+		w.Write(html)
 	} else {
 		//Handling error
 		var html = []byte(`

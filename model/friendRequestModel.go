@@ -8,13 +8,13 @@ import (
 type FriendRequest struct {
 	//FROM and TO are emails
 	FROMNAME  string
-	FROMEMAIL string
+	CELLPHONE string
 	TOEMAIL   string
 }
 
-func InsertFriendRequest(session *mgo.Session, fromName string, fromEmail string, toEmail string) {
+func InsertFriendRequest(session *mgo.Session, fromName string, cellPhone string, toEmail string) {
 	c := session.DB("chat-service").C("friendRequests")
-	err := c.Insert(&FriendRequest{fromName, fromEmail, toEmail})
+	err := c.Insert(&FriendRequest{fromName, cellPhone, toEmail})
 	if err != nil {
 		panic(err)
 	}
