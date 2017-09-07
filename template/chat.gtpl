@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">:
   <title>Chat Messenger</title>
-      <link rel="stylesheet" href="css/style-chat.css"> 
+      <link rel="stylesheet" href="css/style-chat.css">
 </head>
 
 <body>
@@ -12,10 +12,10 @@
 <div id="chatbox">
 	<div id="friendslist">
     	<div id="topmenu">
-            <span class="history" onclick='loadFriendRequests()' ></span>
+            <span class="history" onclick='loadFriendRequest()' ></span>
             <span class="chats" onclick='seeLastMessages()' ></span>
             <span class="friends" onclick='contactSearch()' ></span>
-        </div>  
+        </div>
         <div id="friends">
 		<div id ="contacts">
 			<div class="friend" onclick='' >
@@ -42,20 +42,20 @@
 				</p>
 				<div class="status inactive"></div>
 			</div>
-		</div> 
+		</div>
 		<!--<div id="search">
 			<input type="text" id="searchfield" value="Search contacts..." onkeypress="includeHtml(event)"/>
-		</div>--> 
-	</div>		
-	</div>	
-  </div>        
+		</div>-->
+	</div>
+	</div>
+  </div>
 </div>
 
 <div id="chat-box">
 
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-  
+
     <script src="js/index-chat.js"></script>
     <script>
 
@@ -68,7 +68,7 @@
 		//Enter key
 		if(e.keyCode == 13){
 			alert('Go to database and update')
-		}		
+		}
 	}
 
 	function testAlert(e){
@@ -82,13 +82,13 @@
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function () {
 			if(this.readyState == 4 && this.status == 200){
-				var responde = this.responseText;
+				var response = xhttp.responseText;
 				console.log(response);
 			}
 		};
-		xhttp.open("POST","/getFriendsRequest&email=claudiofilipesilvagoncalves@gmail.com",true);
+		xhttp.open("GET","/findFriendsRequests",true);
 		xhttp.send();
-			
+
 	}
 
 	function contactSearch(){

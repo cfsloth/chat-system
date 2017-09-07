@@ -24,3 +24,4 @@ func FindFriendRequests(session *mgo.Session, email string) *mgo.Query{
 	array := c.Find(bson.M{"to":email})
 	return array
 }
+
