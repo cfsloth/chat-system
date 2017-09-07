@@ -11,6 +11,19 @@ type Data struct {
 	Email string
 }
 
+func LoadPageAndMethodsChat(w http.ResponseWriter, r *http.Request) {
+	if r.Method == "GET" {
+		var cookie, err = r.Cookie("loginC")
+		//Here use some encriptation/desincriptation function for cookies
+		if err == nil && cookie.Value == "true" {
+			http.ServeFile(w, r, "template/chat.gtpl")
+		} else {
+			http.Redirect(w, r, "/", http.StatusSeeOther)
+			fmt.Println("GET /chatMessage")
+		}
+	}
+}
+
 func LoadFriendsRequest(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		var data Data
@@ -23,6 +36,6 @@ func LoadFriendsRequest(w http.ResponseWriter, r *http.Request) {
 		}
 		w.Write(js)
 	} else {
-		fmt.Println("Acess denied")
+		http.Redirect(w, r, "/", http.StatusSeeOther)
 	}
 }

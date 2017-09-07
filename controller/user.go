@@ -7,6 +7,7 @@ import (
 	"time"
 )
 
+/* Function to LoadPageAndMethods of login */
 func LoadPageAndMethods(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" {
 		var cookie, err = r.Cookie("loginC")
