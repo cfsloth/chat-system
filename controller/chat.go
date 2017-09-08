@@ -27,8 +27,10 @@ func LoadPageAndMethodsChat(w http.ResponseWriter, r *http.Request) {
 
 func LoadFriendsRequest(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
+		r.ParseForm()
+		email := r.FormValue("email")
 		session := model.InitializeDB()
-		listOfRequests := model.FindFriendRequests(session, "claudiofilipesilvagoncalves@gmail.com")
+		listOfRequests := model.FindFriendRequests(session, email)
 		w.Header().Set("Content-Type", "application/json")
 		js, err := json.Marshal(listOfRequests)
 		if err != nil {
