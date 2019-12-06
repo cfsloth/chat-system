@@ -1,9 +1,9 @@
 package main
 
 import (
-	"Chat-System/chat-system/controller"
 	"net/http"
 
+	"./controller"
 	"github.com/gorilla/mux"
 )
 

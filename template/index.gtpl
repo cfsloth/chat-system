@@ -36,7 +36,7 @@
   </form>
   <form method="POST" class="login-form">
     <input type="text" name="email" placeholder="Username" required />
-    <input type="password" name="password" placeholder="Password" requires/>
+    <input type="password" name="password" placeholder="Password" required/>
     <button type="submit">Login</button>
     <p class="message">Not registered? <a href="#">Create an account</a></p>
   </form>

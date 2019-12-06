@@ -1,10 +1,11 @@
 package controller
 
 import (
-	"Chat-System/chat-system/model"
 	"fmt"
 	"net/http"
 	"time"
+
+	"../model"
 )
 
 /* Function to LoadPageAndMethods of login */

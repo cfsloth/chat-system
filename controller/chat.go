@@ -1,7 +1,7 @@
 package controller
 
 import (
-	"Chat-System/chat-system/model"
+	"../model"
 	"encoding/json"
 	"fmt"
 	"net/http"
