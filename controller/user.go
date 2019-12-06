@@ -8,7 +8,6 @@ import (
 	"../model"
 )
 
-/* Function to LoadPageAndMethods of login */
 func LoadPageAndMethods(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" {
 		var cookie, err = r.Cookie("loginC")
@@ -31,6 +30,7 @@ func LoadPageAndMethods(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+/*LoginUser : Function to login a user*/
 func LoginUser(w http.ResponseWriter, r *http.Request) {
 	session := model.InitializeDB()
 	user := model.FindUserByEmail(session, r.PostFormValue("email"))

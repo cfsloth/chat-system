@@ -1,10 +1,11 @@
 package controller
 
 import (
-	"../model"
 	"encoding/json"
 	"fmt"
 	"net/http"
+
+	"../model"
 )
 
 type Data struct {

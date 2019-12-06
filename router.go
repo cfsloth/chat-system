@@ -20,6 +20,7 @@ func main() {
 	r.HandleFunc("/", controller.LoadPageAndMethods)
 	r.HandleFunc("/chatMessage", controller.LoadPageAndMethodsChat)
 	r.HandleFunc("/findFriendsRequests", controller.LoadFriendsRequest)
+	r.HandleFunc("/webSocketServer", controller.LoadPageAndMethodsWebSockets)
 	http.Handle("/", r)
 	http.ListenAndServe(":8080", nil)
 }
