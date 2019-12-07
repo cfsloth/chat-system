@@ -7,6 +7,16 @@ import (
 	"github.com/gorilla/websocket"
 )
 
+type Message struct {
+	Message     string
+	Sender      string
+	Receiver    string
+	MessageType int
+	Error       bool
+}
+
+var message *Message = new(Message)
+
 var upgrader = websocket.Upgrader{
 	ReadBufferSize:  1024,
 	WriteBufferSize: 1024,
@@ -16,31 +26,44 @@ var upgrader = websocket.Upgrader{
 func LoadPageAndMethodsWebSockets(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" {
 		fmt.Println("Web-Socket")
-		Handler(w, r)
+		fmt.Println(Handler(w, r))
 	}
 }
 
-func Handler(writer http.ResponseWriter, request *http.Request) string {
+/* free message */
+func Handler(writer http.ResponseWriter, request *http.Request) *Message {
 	socket, err := upgrader.Upgrade(writer, request, nil)
 	if err != nil {
 		fmt.Println(err)
-		return "Upgrader error"
+		message.Message = "Upgrade Error"
+		message.Receiver = "Receiver"
+		message.Sender = "Sender"
+		message.Error = true
+		return message
 	}
 	for {
 		// Reading WebSocket Message
 		msgType, msg, err := socket.ReadMessage()
 		if err != nil {
 			fmt.Println(err)
-			return "Message Received Error"
+			message.Message = "Receiving Error"
+			message.Receiver = "Request"
+			message.Sender = "Sender"
+			message.MessageType = msgType
+			message.Error = true
+			return message
 		}
 		// Logging
 		fmt.Println("Message received: ", string(msg))
-
-		// Returning Message
+		message.Message = "Upgrade Error"
+		message.Receiver = "Request"
+		message.Sender = "Sender"
+		message.MessageType = msgType
+		message.Error = false
 		err = socket.WriteMessage(msgType, msg)
 		if err != nil {
 			fmt.Println(err)
-			return "Error Returning Message"
+			return message
 		}
 	}
 }
